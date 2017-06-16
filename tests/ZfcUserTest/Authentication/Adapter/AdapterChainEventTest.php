@@ -30,7 +30,7 @@ class AdapterChainEventTest extends \PHPUnit_Framework_TestCase
     public function testCodeAndMessages()
     {
         $testCode = 103;
-        $testMessages = array('Message recieved loud and clear.');
+        $testMessages = array('Message received loud and clear.');
 
         $this->event->setCode($testCode);
         $this->assertEquals($testCode, $this->event->getCode(), "Asserting code values match.");
