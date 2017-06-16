@@ -15,7 +15,7 @@ class ZfcUserLoginWidgetTest extends \PHPUnit_Framework_TestCase
     {
         $this->helper = new ViewHelper;
 
-        $view = $this->getMock('Zend\View\Renderer\RendererInterface');
+        $view = $this->createMock('Zend\View\Renderer\RendererInterface');
         $this->view = $view;
 
         $this->helper->setView($view);

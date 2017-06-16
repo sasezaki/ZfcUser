@@ -56,10 +56,10 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $this->adapterChain = new AdapterChain();
 
-        $this->sharedEventManager = $this->getMock('Zend\EventManager\SharedEventManagerInterface');
+        $this->sharedEventManager = $this->createMock('Zend\EventManager\SharedEventManagerInterface');
         //$this->sharedEventManager->expects($this->any())->method('getListeners')->will($this->returnValue([]));
 
-        $this->eventManager = $this->getMock('Zend\EventManager\EventManagerInterface');
+        $this->eventManager = $this->createMock('Zend\EventManager\EventManagerInterface');
         $this->eventManager->expects($this->any())->method('getSharedManager')->will($this->returnValue($this->sharedEventManager));
         $this->eventManager->expects($this->any())->method('setIdentifiers');
 
@@ -71,7 +71,7 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
      */
     public function testAuthenticate()
     {
-        $event = $this->getMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
+        $event = $this->createMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
         $event->expects($this->once())
               ->method('getCode')
               ->will($this->returnValue(123));
@@ -103,11 +103,11 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
         $listeners = array();
 
         for ($i=1; $i<=3; $i++) {
-            $storage = $this->getMock('ZfcUser\Authentication\Storage\Db');
+            $storage = $this->createMock('ZfcUser\Authentication\Storage\Db');
             $storage->expects($this->once())
                     ->method('clear');
 
-            $adapter = $this->getMock('ZfcUser\Authentication\Adapter\ChainableAdapter');
+            $adapter = $this->createMock('ZfcUser\Authentication\Adapter\ChainableAdapter');
             $adapter->expects($this->once())
                     ->method('getStorage')
                     ->will($this->returnValue($storage));
@@ -131,8 +131,8 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUpPrepareForAuthentication()
     {
-        $this->request = $this->getMock('Zend\Stdlib\RequestInterface');
-        $this->event = $this->getMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
+        $this->request = $this->createMock('Zend\Stdlib\RequestInterface');
+        $this->event = $this->createMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
 
         $this->event->expects($this->once())->method('setRequest')->with($this->request);
 
@@ -141,7 +141,7 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
         /**
          * @var $response \Zend\EventManager\ResponseCollection
          */
-        $responses = $this->getMock('Zend\EventManager\ResponseCollection');
+        $responses = $this->createMock('Zend\EventManager\ResponseCollection');
 
         $this->eventManager->expects($this->at(1))
             ->method('trigger')
@@ -206,7 +206,7 @@ class AdapterChainTest extends \PHPUnit_Framework_TestCase
 
         $result->expects($this->once())->method('stopped')->will($this->returnValue(true));
 
-        $lastResponse = $this->getMock('Zend\Stdlib\ResponseInterface');
+        $lastResponse = $this->createMock('Zend\Stdlib\ResponseInterface');
         $result->expects($this->atLeastOnce())->method('last')->will($this->returnValue($lastResponse));
 
         $this->assertEquals(

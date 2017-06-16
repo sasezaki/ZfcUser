@@ -32,8 +32,8 @@ class DbTest extends \PHPUnit_Framework_TestCase
         $db = new Db;
         $this->db = $db;
 
-        $this->storage = $this->getMock('Zend\Authentication\Storage\Session');
-        $this->mapper = $this->getMock('ZfcUser\Mapper\User');
+        $this->storage = $this->createMock('Zend\Authentication\Storage\Session');
+        $this->mapper = $this->createMock('ZfcUser\Mapper\User');
     }
 
     /**
@@ -74,7 +74,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
         $this->db->setStorage($this->storage);
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->setUsername('zfcUser');
 
         $this->mapper->expects($this->once())
@@ -117,7 +117,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testReadWithoutResolvedEntitySetIdentityObject()
     {
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->setUsername('zfcUser');
 
         $this->storage->expects($this->once())
@@ -175,7 +175,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMapperWithNoMapperSet()
     {
-        $sm = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $sm = $this->createMock('Zend\ServiceManager\ServiceManager');
         $sm->expects($this->once())
            ->method('get')
            ->with('zfcuser_user_mapper')
@@ -207,7 +207,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetServicemanager()
     {
-        $sm = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $sm = $this->createMock('Zend\ServiceManager\ServiceManager');
 
         $this->db->setServiceManager($sm);
 

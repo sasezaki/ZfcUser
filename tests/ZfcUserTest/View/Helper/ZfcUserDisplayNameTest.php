@@ -17,10 +17,10 @@ class ZfcUserDisplayNameTest extends \PHPUnit_Framework_TestCase
         $helper = new ViewHelper;
         $this->helper = $helper;
 
-        $authService = $this->getMock('Zend\Authentication\AuthenticationService');
+        $authService = $this->createMock('Zend\Authentication\AuthenticationService');
         $this->authService = $authService;
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $this->user = $user;
 
         $helper->setAuthService($authService);

@@ -12,7 +12,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct($authIdentityFields = array())
     {
-        $options = $this->getMock('ZfcUser\Options\AuthenticationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\AuthenticationOptionsInterface');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
                 ->will($this->returnValue($authIdentityFields));
@@ -42,7 +42,7 @@ class LoginTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetAuthenticationOptions()
     {
-        $options = $this->getMock('ZfcUser\Options\AuthenticationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\AuthenticationOptionsInterface');
         $options->expects($this->once())
                 ->method('getAuthIdentityFields')
                 ->will($this->returnValue(array()));

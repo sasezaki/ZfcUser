@@ -37,7 +37,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
 
         $this->assertNull($validator->getMapper());
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $validator->setMapper($mapper);
         $this->assertSame($mapper, $validator->getMapper());
     }
@@ -81,7 +81,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
         $options = array('key' => 'username');
         $validator = new AbstractRecordExtension($options);
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $mapper->expects($this->once())
                ->method('findByUsername')
                ->with('test')
@@ -105,7 +105,7 @@ class AbstractRecordTest extends \PHPUnit_Framework_TestCase
         $options = array('key' => 'email');
         $validator = new AbstractRecordExtension($options);
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $mapper->expects($this->once())
             ->method('findByEmail')
             ->with('test@test.com')

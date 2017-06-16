@@ -11,7 +11,7 @@ class RegisterFilterTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
         $options->expects($this->once())
                 ->method('getEnableUsername')
                 ->will($this->returnValue(true));
@@ -34,7 +34,7 @@ class RegisterFilterTest extends \PHPUnit_Framework_TestCase
 
     public function testSetGetEmailValidator()
     {
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
         $validatorInit = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $validatorNew = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
 
@@ -47,7 +47,7 @@ class RegisterFilterTest extends \PHPUnit_Framework_TestCase
 
     public function testSetGetUsernameValidator()
     {
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
         $validatorInit = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $validatorNew = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
 
@@ -60,8 +60,8 @@ class RegisterFilterTest extends \PHPUnit_Framework_TestCase
 
     public function testSetGetOptions()
     {
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
-        $optionsNew = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
+        $optionsNew = $this->createMock('ZfcUser\Options\ModuleOptions');
         $validatorInit = $this->getMockBuilder('ZfcUser\Validator\NoRecordExists')->disableOriginalConstructor()->getMock();
         $filter = new Filter($validatorInit, $validatorInit, $options);
 

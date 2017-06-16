@@ -41,7 +41,7 @@ class AdapterChainServiceFactoryTest extends \PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
-        $this->serviceLocator = $this->getMock('Zend\ServiceManager\ServiceLocatorInterface');
+        $this->serviceLocator = $this->createMock('Zend\ServiceManager\ServiceLocatorInterface');
 
         $this->options = $this->getMockBuilder('ZfcUser\Options\ModuleOptions')
             ->disableOriginalConstructor()
@@ -55,7 +55,7 @@ class AdapterChainServiceFactoryTest extends \PHPUnit_Framework_TestCase
             ->method('get')
             ->will($this->returnCallback(array($this,'helperServiceLocator')));
 
-        $this->eventManager = $this->getMock('Zend\EventManager\EventManager');
+        $this->eventManager = $this->createMock('Zend\EventManager\EventManager');
 
         $this->factory = new AdapterChainServiceFactory();
     }
@@ -66,11 +66,11 @@ class AdapterChainServiceFactoryTest extends \PHPUnit_Framework_TestCase
     public function testCreateService()
     {
         $adapter = array(
-            'adapter1'=> $this->getMock(
+            'adapter1'=> $this->createMock(
                 'ZfcUser\Authentication\Adapter\AbstractAdapter',
                 array('authenticate', 'logout')
             ),
-            'adapter2'=> $this->getMock(
+            'adapter2'=> $this->createMock(
                 'ZfcUser\Authentication\Adapter\AbstractAdapter',
                 array('authenticate', 'logout')
             )

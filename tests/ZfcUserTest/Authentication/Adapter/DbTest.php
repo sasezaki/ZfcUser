@@ -51,25 +51,25 @@ class DbTest extends \PHPUnit_Framework_TestCase
 
     protected function setUp()
     {
-        $storage = $this->getMock('Zend\Authentication\Storage\Session');
+        $storage = $this->createMock('Zend\Authentication\Storage\Session');
         $this->storage = $storage;
 
-        $authEvent = $this->getMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
+        $authEvent = $this->createMock('ZfcUser\Authentication\Adapter\AdapterChainEvent');
         $this->authEvent = $authEvent;
 
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
         $this->options = $options;
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $this->mapper = $mapper;
 
-        $user = $this->getMock('ZfcUser\Entity\UserInterface');
+        $user = $this->createMock('ZfcUser\Entity\UserInterface');
         $this->user = $user;
 
         $this->db = new Db;
         $this->db->setStorage($this->storage);
 
-        $sessionManager = $this->getMock('Zend\Session\SessionManager');
+        $sessionManager = $this->createMock('Zend\Session\SessionManager');
         \Zend\Session\AbstractContainer::setDefaultManager($sessionManager);
     }
 
@@ -323,12 +323,12 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateUserPasswordHashWithSameCost()
     {
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->once())
             ->method('getPassword')
             ->will($this->returnValue('$2a$10$x05G2P803MrB3jaORBXBn.QHtiYzGQOBjQ7unpEIge.Mrz6c3KiVm'));
 
-        $bcrypt = $this->getMock('Zend\Crypt\Password\Bcrypt');
+        $bcrypt = $this->createMock('Zend\Crypt\Password\Bcrypt');
         $bcrypt->expects($this->once())
             ->method('getCost')
             ->will($this->returnValue('10'));
@@ -348,7 +348,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testUpdateUserPasswordHashWithoutSameCost()
     {
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->once())
             ->method('getPassword')
             ->will($this->returnValue('$2a$10$x05G2P803MrB3jaORBXBn.QHtiYzGQOBjQ7unpEIge.Mrz6c3KiVm'));
@@ -356,7 +356,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->method('setPassword')
             ->with('$2a$10$D41KPuDCn6iGoESjnLee/uE/2Xo985sotVySo2HKDz6gAO4hO/Gh6');
 
-        $bcrypt = $this->getMock('Zend\Crypt\Password\Bcrypt');
+        $bcrypt = $this->createMock('Zend\Crypt\Password\Bcrypt');
         $bcrypt->expects($this->once())
             ->method('getCost')
             ->will($this->returnValue('5'));
@@ -365,7 +365,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->with('ZfcUserNew')
             ->will($this->returnValue('$2a$10$D41KPuDCn6iGoESjnLee/uE/2Xo985sotVySo2HKDz6gAO4hO/Gh6'));
 
-        $mapper = $this->getMock('ZfcUser\Mapper\User');
+        $mapper = $this->createMock('ZfcUser\Mapper\User');
         $mapper->expects($this->once())
             ->method('update')
             ->with($user);
@@ -419,7 +419,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetServicemanager()
     {
-        $sm = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $sm = $this->createMock('Zend\ServiceManager\ServiceManager');
 
         $this->db->setServiceManager($sm);
 
@@ -434,7 +434,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetOptionsWithNoOptionsSet()
     {
-        $serviceMapper = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $serviceMapper = $this->createMock('Zend\ServiceManager\ServiceManager');
         $serviceMapper->expects($this->once())
             ->method('get')
             ->with('zfcuser_module_options')
@@ -468,7 +468,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
      */
     public function testGetMapperWithNoMapperSet()
     {
-        $serviceMapper = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $serviceMapper = $this->createMock('Zend\ServiceManager\ServiceManager');
         $serviceMapper->expects($this->once())
             ->method('get')
             ->with('zfcuser_user_mapper')
@@ -526,7 +526,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->method('read')
             ->will($this->returnValue(array('is_satisfied' => false)));
 
-        $post = $this->getMock('Zend\Stdlib\Parameters');
+        $post = $this->createMock('Zend\Stdlib\Parameters');
         $post->expects($this->at(0))
             ->method('get')
             ->with('identity')
@@ -536,7 +536,7 @@ class DbTest extends \PHPUnit_Framework_TestCase
             ->with('credential')
             ->will($this->returnValue($credential));
 
-        $request = $this->getMock('Zend\Http\Request');
+        $request = $this->createMock('Zend\Http\Request');
         $request->expects($this->exactly(2))
             ->method('getPost')
             ->will($this->returnValue($post));

@@ -30,7 +30,7 @@ class ZfcUserAuthenticationTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->SUT = new Plugin();
-        $this->mockedAuthenticationService = $this->getMock('Zend\Authentication\AuthenticationService');
+        $this->mockedAuthenticationService = $this->createMock('Zend\Authentication\AuthenticationService');
         $this->mockedAuthenticationAdapter = $this->getMockForAbstractClass('\ZfcUser\Authentication\Adapter\AdapterChain');
     }
 

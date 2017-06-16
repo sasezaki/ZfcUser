@@ -16,7 +16,7 @@ class NoRecordExistsTest extends \PHPUnit_Framework_TestCase
         $validator = new Validator($options);
         $this->validator = $validator;
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $this->mapper = $mapper;
 
         $validator->setMapper($mapper);

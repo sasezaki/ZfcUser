@@ -11,7 +11,7 @@ class RegisterTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct($useCaptcha = false)
     {
-        $options = $this->getMock('ZfcUser\Options\RegistrationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\RegistrationOptionsInterface');
         $options->expects($this->once())
                 ->method('getEnableUsername')
                 ->will($this->returnValue(false));
@@ -51,7 +51,7 @@ class RegisterTest extends \PHPUnit_Framework_TestCase
 
     public function testSetGetRegistrationOptions()
     {
-        $options = $this->getMock('ZfcUser\Options\RegistrationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\RegistrationOptionsInterface');
         $options->expects($this->once())
                 ->method('getEnableUsername')
                 ->will($this->returnValue(false));
@@ -65,14 +65,14 @@ class RegisterTest extends \PHPUnit_Framework_TestCase
 
         $this->assertSame($options, $form->getRegistrationOptions());
 
-        $optionsNew = $this->getMock('ZfcUser\Options\RegistrationOptionsInterface');
+        $optionsNew = $this->createMock('ZfcUser\Options\RegistrationOptionsInterface');
         $form->setRegistrationOptions($optionsNew);
         $this->assertSame($optionsNew, $form->getRegistrationOptions());
     }
 
     public function testSetCaptchaElement()
     {
-        $options = $this->getMock('ZfcUser\Options\RegistrationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\RegistrationOptionsInterface');
         $options->expects($this->once())
                 ->method('getEnableUsername')
                 ->will($this->returnValue(false));
@@ -83,7 +83,7 @@ class RegisterTest extends \PHPUnit_Framework_TestCase
                 ->method('getUseRegistrationFormCaptcha')
                 ->will($this->returnValue(false));
 
-        $captcha = $this->getMock('\Zend\Form\Element\Captcha');
+        $captcha = $this->createMock('\Zend\Form\Element\Captcha');
         $form = new Form(null, $options);
 
         $form->setCaptchaElement($captcha);

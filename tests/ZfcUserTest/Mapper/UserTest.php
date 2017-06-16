@@ -44,9 +44,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
 
         $this->setUpMockedAdapter();
 
-        $this->mockedSelect = $this->getMock('\Zend\Db\Sql\Select', array('where'));
+        $this->mockedSelect = $this->createMock('\Zend\Db\Sql\Select', array('where'));
 
-        $this->mockedResultSet = $this->getMock('\Zend\Db\ResultSet\HydratingResultSet');
+        $this->mockedResultSet = $this->createMock('\Zend\Db\ResultSet\HydratingResultSet');
 
         $this->setUpAdapter('mysql');
 //         $this->setUpAdapter('pgsql');
@@ -105,9 +105,9 @@ class UserTest extends \PHPUnit_Framework_TestCase
      */
     public function setUpMockedAdapter()
     {
-        $this->mockedDbAdapterDriver = $this->getMock('Zend\Db\Adapter\Driver\DriverInterface');
-        $this->mockedDbAdapterPlatform = $this->getMock('Zend\Db\Adapter\Platform\PlatformInterface', array());
-        $this->mockedDbAdapterStatement= $this->getMock('Zend\Db\Adapter\Driver\StatementInterface', array());
+        $this->mockedDbAdapterDriver = $this->createMock('Zend\Db\Adapter\Driver\DriverInterface');
+        $this->mockedDbAdapterPlatform = $this->createMock('Zend\Db\Adapter\Platform\PlatformInterface', array());
+        $this->mockedDbAdapterStatement= $this->createMock('Zend\Db\Adapter\Driver\StatementInterface', array());
 
         $this->mockedDbAdapterPlatform->expects($this->any())
                                       ->method('getName')
@@ -118,7 +118,8 @@ class UserTest extends \PHPUnit_Framework_TestCase
                                           $this->mockedDbAdapterDriver,
                                           $this->mockedDbAdapterPlatform
                                       ))
-                                      ->getMock(array('getPlatform'));
+                                      ->setMethods(['getPlatform'])
+                                      ->getMock();
 
         $this->mockedDbAdapter->expects($this->any())
                               ->method('getPlatform')
@@ -138,13 +139,13 @@ class UserTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     *
-     * @param arra $eventListenerArray
-     * @return array
+     * @param $mapperMethods
      */
     public function setUpMockMapperInsert($mapperMethods)
     {
-        $this->mapper = $this->getMock(get_class($this->mapper), $mapperMethods);
+        $this->mapper = $this->getMockBuilder(get_class($this->mapper))
+            ->setMethods($mapperMethods)
+            ->getMock();
 
         foreach ($mapperMethods as $method) {
             switch ($method) {

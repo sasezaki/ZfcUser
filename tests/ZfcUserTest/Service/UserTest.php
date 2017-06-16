@@ -26,19 +26,19 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $service = new Service;
         $this->service = $service;
 
-        $options = $this->getMock('ZfcUser\Options\ModuleOptions');
+        $options = $this->createMock('ZfcUser\Options\ModuleOptions');
         $this->options = $options;
 
-        $serviceManager = $this->getMock('Zend\ServiceManager\ServiceManager');
+        $serviceManager = $this->createMock('Zend\ServiceManager\ServiceManager');
         $this->serviceManager = $serviceManager;
 
-        $eventManager = $this->getMock('Zend\EventManager\EventManager');
+        $eventManager = $this->createMock('Zend\EventManager\EventManager');
         $this->eventManager = $eventManager;
 
-        $formHydrator = $this->getMock('Zend\Hydrator\HydratorInterface');
+        $formHydrator = $this->createMock('Zend\Hydrator\HydratorInterface');
         $this->formHydrator = $formHydrator;
 
-        $mapper = $this->getMock('ZfcUser\Mapper\UserInterface');
+        $mapper = $this->createMock('ZfcUser\Mapper\UserInterface');
         $this->mapper = $mapper;
 
         $authService = $this->getMockBuilder('Zend\Authentication\AuthenticationService')->disableOriginalConstructor()->getMock();
@@ -89,7 +89,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->once())
              ->method('setPassword');
         $user->expects($this->once())
@@ -160,7 +160,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->once())
              ->method('setPassword');
         $user->expects($this->once())
@@ -232,7 +232,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     {
         $expectArray = array('username' => 'ZfcUser', 'display_name' => 'Zfc User');
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->once())
              ->method('setPassword');
         $user->expects($this->once())
@@ -309,7 +309,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $bcrypt = new Bcrypt();
         $bcrypt->setCost($this->options->getPasswordCost());
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->any())
              ->method('getPassword')
              ->will($this->returnValue($bcrypt->create('wrongPassword')));
@@ -336,7 +336,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $bcrypt = new Bcrypt();
         $bcrypt->setCost($this->options->getPasswordCost());
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->any())
              ->method('getPassword')
              ->will($this->returnValue($bcrypt->create($data['credential'])));
@@ -372,7 +372,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $bcrypt = new Bcrypt();
         $bcrypt->setCost($this->options->getPasswordCost());
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->any())
              ->method('getPassword')
              ->will($this->returnValue($bcrypt->create($data['credential'])));
@@ -409,7 +409,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
         $bcrypt = new Bcrypt();
         $bcrypt->setCost($this->options->getPasswordCost());
 
-        $user = $this->getMock('ZfcUser\Entity\User');
+        $user = $this->createMock('ZfcUser\Entity\User');
         $user->expects($this->any())
              ->method('getPassword')
              ->will($this->returnValue($bcrypt->create('wrongPassword')));

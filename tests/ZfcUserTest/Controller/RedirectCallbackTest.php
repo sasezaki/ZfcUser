@@ -68,7 +68,7 @@ class RedirectCallbackTest extends \PHPUnit_Framework_TestCase
             ->method('getMatchedRouteName')
             ->will($this->returnValue('someRoute'));
 
-        $headers = $this->getMock('Zend\Http\Headers');
+        $headers = $this->createMock('Zend\Http\Headers');
         $headers->expects($this->once())
             ->method('addHeaderLine')
             ->with('Location', $url);

@@ -11,7 +11,7 @@ class ChangeEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testConstruct()
     {
-        $options = $this->getMock('ZfcUser\Options\AuthenticationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\AuthenticationOptionsInterface');
 
         $form = new Form(null, $options);
 
@@ -29,7 +29,7 @@ class ChangeEmailTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetGetAuthenticationOptions()
     {
-        $options = $this->getMock('ZfcUser\Options\AuthenticationOptionsInterface');
+        $options = $this->createMock('ZfcUser\Options\AuthenticationOptionsInterface');
         $form = new Form(null, $options);
 
         $this->assertSame($options, $form->getAuthenticationOptions());
