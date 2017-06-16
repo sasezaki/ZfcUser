@@ -89,7 +89,7 @@ class UserTest extends \PHPUnit_Framework_TestCase
     public function setUpSqlDatabase($adapter, $schemaPath)
     {
         $queryStack= array('DROP TABLE IF EXISTS user');
-        $queryStack = array_merge($queryStack, explode(';', file_get_contents($schemaPath)));
+        $queryStack = array_merge($queryStack, explode(';', file_get_contents(__DIR__ . '/../../../' .$schemaPath)));
         $queryStack = array_merge($queryStack, explode(';', file_get_contents(__DIR__ . '/_files/user.sql')));
 
         foreach ($queryStack as $query) {
